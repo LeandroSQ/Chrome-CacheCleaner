@@ -1,0 +1,188 @@
+/* Imports */
+@import "./font.css";
+@import "./animations.css";
+
+/* Page */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+    --background: #454D5E;
+    --header-background: #353b48;
+    --foreground: #efefef;
+
+    --green: #2ecc71;
+    --red: #FE5F55;
+    --blue: #33A1FD;
+    --purple: #8A5CFF;
+}
+
+html, body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Noto Sans', sans-serif;
+    width: 300px;
+    border-bottom-left-radius: 5pt;
+    border-bottom-right-radius: 5pt;
+}
+
+
+/* Header */
+header {
+    background: var(--header-background);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10pt;
+}
+
+header img {
+    height: 50px;
+}
+
+header h1 {
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+/* Content */
+section {
+    padding: 0pt 10pt 10pt 10pt;
+}
+
+section h2 {
+    width: 100%;
+    text-align: center;
+    margin: 20pt 0pt;
+    font-weight: 100;
+}
+
+section #error {
+    text-align: justify;
+    max-height: 0px;    
+    color: var(--red);
+    font-weight: 100;
+    margin-bottom: 10pt;
+    opacity: 0;
+    overflow-y: hidden;
+    transform: scale(2.0);
+    transition: all 250ms ease-in;
+}
+
+section #error.active {
+    overflow-y: auto;
+    max-height: 100px;
+    opacity: 1;
+}
+
+section button {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 36.66px;
+    padding: 7pt;
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 10pt;
+    border-radius: 2pt;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    outline-width: 0px;
+    outline-color: transparent;
+    transition: color 250ms;
+}
+
+section button.loading {
+    color: transparent !important;
+}
+
+section button.active {
+    color: transparent !important;
+    
+    animation: shrink;
+    animation-timing-function: ease-out;
+    animation-duration: 200ms;
+    animation-fill-mode: both;
+}
+
+section button.shake {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+ 
+    animation: shake;
+    animation-timing-function: ease-out;
+    animation-duration: 400ms;
+    animation-fill-mode: both;
+}
+
+section button::after {
+    content: "";
+    position: absolute;
+    opacity: 0;    
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;  
+}
+
+section button.loading::after {
+    content: "Limpando...";
+    opacity: 1;
+    line-height: 36.66px;
+    
+    animation: loading;
+    animation-timing-function: linear;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+}
+
+section button.active::after {
+    background: url("../images/checkmark.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 32px;
+
+    animation: checkmark;
+    animation-timing-function: ease-out;
+    animation-duration: 250ms;
+    animation-delay: 100ms;
+    animation-fill-mode: forwards;    
+}
+
+section .divider {
+    margin-top: 10pt;
+    margin-left: 20%;
+    margin-right: 20%;
+    background: rgba(255, 255, 255, 0.1);
+    height: 1px;
+    width: 60%;    
+}
+
+/* Individual button styling */
+section button:nth-of-type(1) {
+    background-color: var(--green);
+    color: white;
+}
+
+section button:nth-of-type(2) {
+    background-color: var(--blue);
+    color: white;
+}
+
+section button:nth-of-type(3) {
+    background-color: var(--purple);
+    color: white;
+}
+
+section button:nth-of-type(4) {
+    background-color: var(--red);
+    color: white;
+}
